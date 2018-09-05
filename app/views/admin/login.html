@@ -1,0 +1,60 @@
+<?php $this->load->view('admin/header.php');?>
+<title>管理后台--登陆</title>
+<body style="background:#337ab7; margin-top:100px;">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">后台登陆</h3>
+                </div>
+                <div class="panel-body">
+                    <form accept-charset="UTF-8" action="<?php echo site_url('admin/login/do_login');?>" class="form-horizontal" id="new_user" method="post" novalidate="novalidate" name="form">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="user_nickname">用户名</label>
+                            <div class="col-md-5">
+                                <input autofocus="autofocus" class="form-control" id="user_nickname" name="username"
+                                       size="50" type="text"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="user_password">密码</label>
+                            <div class="col-md-5">
+                                <input class="form-control" id="user_password" name="password" size="50"
+                                       type="password"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="captcha_code">验证码</label>
+                            <div class="col-md-4" style="width:120px">
+                                <input class="form-control" id="captcha_code" name="captcha_code" size="30" type="text"/>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="javascript:reloadcode();" title="更换一张验证码图片"><img style="width:65px;height:34px" src="<?php echo site_url('vcode')?>" name="checkCodeImg" id="checkCodeImg" border="0"/></a>&nbsp;&nbsp;&nbsp;<a href="javascript:reloadcode();">换一张</a>
+                            </div>
+                        </div>
+<p class="text-danger" align="center"><?php echo @$error?></p>
+                        <div class='form-group'>
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" name="commit" class="btn btn-primary">登陆</button>
+                                <a href="javascript:" class="btn btn-default" role="button">找回密码</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /.col-md-6 -->
+    </div><!-- /.row -->
+</div><!-- /.container -->
+<script>
+    //刷新验证码
+    function reloadcode() {
+        var verify = document.getElementById('checkCodeImg');
+        verify.setAttribute('src', "<?php echo site_url('vcode/index?w=')?>" + Math.random());
+    }
+</script>
+</body>
+
+</html>
