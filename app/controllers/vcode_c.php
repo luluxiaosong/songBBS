@@ -10,7 +10,7 @@ class vcode_c extends CI_Controller
         session_start();
     }
 
-    //验证码 保存在$_SESSION['vcode']
+    //生成验证码 保存在$_SESSION['vcode']
     public function get()
     {
         $this->load->library('vcode');

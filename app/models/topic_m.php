@@ -2,7 +2,7 @@
 
 class Topic_m extends CI_Model
 {
-    //热门话题数据 10条 首页/话题页
+    //热门话题数据 6条 首页/话题页
     public function get_topics_hot()
     {
         $this->db->select('t.topic_id, t.topic_name, t.ico, count(p.post_id) posts_count')
@@ -10,7 +10,7 @@ class Topic_m extends CI_Model
             ->join('posts p', 'p.topic_id = t.topic_id', 'left')
             ->group_by('t.topic_id, t.topic_name, t.ico, p.topic_id')
             ->order_by('posts_count','desc')
-            ->limit(5);
+            ->limit(7);
         $res =$this->db->get();
         $res = $res->result_array();
         return $res;
@@ -24,7 +24,7 @@ class Topic_m extends CI_Model
             ->from('topics t')
             ->join('posts p','p.topic_id = t.topic_id','left')
             ->group_by('t.topic_id, t.topic_name, t.ico,t.content,p.topic_id')
-            ->order_by('posts_count','desc');
+            ->order_by('t.topic_name','asc');
         $res=$this->db->get();
         $this->db->cache_off();
         $res = $res->result_array();
@@ -38,7 +38,7 @@ class Topic_m extends CI_Model
             ->from('topics t')
             ->join('posts p', 'p.topic_id = t.topic_id', 'left')
             ->group_by('t.topic_id, t.topic_name, p.topic_id')
-            ->order_by('posts_count','desc');
+            ->order_by('t.topic_name','asc');
        $res = $this->db->get();
        $res = $res->result_array();
        return $res;

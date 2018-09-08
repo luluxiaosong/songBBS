@@ -123,14 +123,12 @@ class Post_m extends CI_Model
     //帖子详细
     public function post_by_post_id($post_id)
     {
-        $this->db->cache_on();
         $this->db->select('posts.*,u.username,u.avatar, t.topic_name');
         $this->db->from('posts');
         $this->db->join('users u', 'u.uid=posts.uid', 'left');
         $this->db->join('topics t', 't.topic_id=posts.topic_id', 'left');
         $this->db->where('posts.post_id', $post_id);
         $query = $this->db->get();
-        $this->db->cache_off();
         return $query->row_array();
 
     }

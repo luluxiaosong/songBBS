@@ -11,8 +11,8 @@
 <div class="col-md-10">
     <div class="panel panel-default">
         <ol class="breadcrumb">
-            <li><a href="<?php echo site_url('admin/login')?>">后台首页</a></li>
-            <li ><a href="<?php echo site_url('admin/topic') ?>">话题列表</a></li>
+            <li><a href="<?php echo site_url('admin/index')?>">后台首页</a></li>
+            <li ><a href="<?php echo site_url('admin/topic/topic_list') ?>">话题列表</a></li>
             <li class="active">话题修改</li>
         </ol>
         <div class="panel-body">

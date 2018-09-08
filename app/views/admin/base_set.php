@@ -46,12 +46,5 @@
             </div><!-- /.col-md-8 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
-
-<footer>
-	<div class="container">
-		<div class="row">
-		</div>
-	</div>
-</footer>
 </body>
 </html>

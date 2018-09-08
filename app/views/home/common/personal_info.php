@@ -13,8 +13,7 @@
                     </div>
                     <div class="col-md-6">
                         <p style="padding-top: 6px; font-size: 20px;"><?php echo $user['username']; ?></p>
-                        <p style="padding-top: 6px; font-size: 12px;"><?php echo $user['signature'] ?></p>
-                        <p style="padding-top: 6px; font-size: 14px;"><?php echo $user['introduction'] ?></p>
+                        <p style="padding-top: 6px; font-size: 12px; color: #999;"><?php echo $user['introduction'] ?></p>
                         <p style="padding-top: 6px; font-size: 14px;"><a  href="<?php echo site_url('personal/set') ?>">修改资料</a>
                         </p>
                     </div>

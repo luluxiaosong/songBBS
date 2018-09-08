@@ -4,7 +4,7 @@
 <meta charset='UTF-8'>
 <title>基本设置</title>
 <?php $this->load->view('admin/header.php');?>
-<script src="<?php echo base_url('static/common/js/global.js')?>" type="text/javascript"></script>
+<script src="<?php echo base_url('static/common/js/global.js')?>" ></script>
 </head>
 <body>
 <!--插入导航  -->

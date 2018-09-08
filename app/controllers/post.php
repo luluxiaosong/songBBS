@@ -35,7 +35,7 @@ class Post extends base_Controller
         );
         //验证数据 标题字数
         $sum = mb_strlen($data['title']);
-        if ($sum == 0 or $sum > 20) {
+        if ($sum == 0 or $sum > 50) {
             echo "<script>alert('标题不符合要求！');window.history.back();</script>";
             exit;
         }
@@ -84,7 +84,7 @@ class Post extends base_Controller
         //回帖分页 当前页 默认为1
         $page= $this->input->get('page') ? $this->input->get('page') : 1;
         $param=[
-           'url'=>site_url().'/post/show/'.$post_id,
+           'url'=>site_url('/post/show/'.$post_id),
            'rows'=>$data['comment_num'],
            'per_page' => $this->config->item('page_comments'),//每页回复条数
            'page' =>$page,//当前页数

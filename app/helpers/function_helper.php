@@ -24,7 +24,7 @@
         $oldchar=array(" ","　","\t","\n","\r");
         $newchar=array("","","","","");
         $content = str_replace($oldchar,$newchar,$content);
-        $content = mb_substr($content,0,32);
+        $content = mb_substr($content,0,120);
         $content .= '......';
         return $content;
     }

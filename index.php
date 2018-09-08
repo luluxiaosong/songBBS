@@ -18,7 +18,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-//根目录
+//网站根目录
  define('MYWEB',__DIR__);
 //根目录名
 // define('WEB',dirname(__DIR__));
