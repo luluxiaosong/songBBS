@@ -90,48 +90,49 @@
             </div>
             <div  style="margin: 4px 10px 4px 12px">
                 <?php if (!empty($comments)) foreach ($comments as $v)  : ?>
-                <div class="comment_div" style="padding-bottom: 16px; border-bottom: #AAB0C6 1px solid; padding-top: 10px;">
-                    <div style="float: left; text-align: center; margin:10px 20px 6px 0px;">
+                <div class="comment_div" style="padding-bottom: 10px;  padding-top: 10px;">
+                    <div style="float: left; text-align: center; margin:4px 20px 6px 0px;">
                         <img src="<?php echo base_url($v['avatar']) ?>" style="display: block; margin-bottom: 5px; height: 50px; width: 50px; border-radius: 50%"/>
                         <a href="<?php echo site_url('user/user_home/'.$v['uid']) ?>"><?php echo $v['username'] ?></a>
                         <p class="text-muted"><?php if($post['uid']==
                         $v['uid']) echo '楼主' ?></p>   
                     </div>           
-                    <div class="comment_" style="float: left; padding-top: 10px; width: 590px;">
-                        <div style="margin:6px 10px 10px 0; min-height: 40px;"><?php echo $v['content'] ?></div>
+                    <div class="comment_" style="float: left; padding: 4px 6px 4px 8px; width: 590px; border:1px #ccc solid; border-radius: 8px;">
+                        <div style="margin:6px 10px 10px 0; min-height: 70px; "><?php echo $v['content'] ?></div>
                             <div class="hover_display text-muted" >
                                  <!--判断是否已赞 -->
                                  <a class="text-muted thumb_up <?php if ( !empty($_SESSION['thumb_'. $v['id']])) echo 'thumb_up_ed' . '" ' . ' title=' . '"' . '已赞'  ?>" href="javascript:void(0);"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="thumbs"><?php echo $v['thumb_up'] ?></span></a><input class="comment_id" type="hidden" value="<?php echo $v['id'] ?>"/>
+                                 <a class="reply_user" style="margin-left: 10px" href="javascript:void(0);">回复</a>
+                                 <!--  管理员操作 删除-->
+                                 <?php if (!empty($_SESSION['uid']) && $_SESSION['user_type'] == 1): ?>
+                             <a class="comment_del" style="margin-left: 10px;" href="javascript:void(0);"><span class="glyphicon glyphicon-trash""></span></a><input class="comment_id" type="hidden" value="<?phpecho $v['id'] ?>"/>
+                                 <?php endif ?>
                                  <span style="float: right;margin-right: 10px;"><?php echo $v['flow']?>楼</span>
                                  <span style="float: right;margin-right: 10px;"><?php echo Wordtime($v['replytime']) ?></span>
                                     
-                                 <!--  管理员操作 删除-->
-                                 <?php if (!empty($_SESSION['uid']) && $_SESSION['user_type'] == 1): ?>
-                             <a class="comment_del" style="float: right;margin-right: 10px;" href="javascript:void(0);"><span class="glyphicon glyphicon-trash""></span></a><input class="comment_id" type="hidden" value="<?phpecho $v['id'] ?>"/>
-                                 <?php endif ?>
-                                 <a class="reply_user" style="float: right; margin-right: 10px" href="javascript:void(0);">回复</a>
+                                 
                             </div>
                             <!--            输入框  -->
-                            <div class="comment_box_user" style="display: none; padding: 10px 0px 10px 0px; ">
+                            <div class="comment_box_user" style="display: none; padding: 10px 0px 10px 20px; ">
                                 <div class="comment_post">
-                                            <form method="post" action="<?php echo site_url('comment/comment_post') ?>">
-                                                <input name="post_id" id="post_id" type="hidden"
-                                                       value="<?php echo $post['post_id'] ?>"/>
-                                                <input name="comment_id" id="post_id" type="hidden"
-                                                       value="<?php echo $v['id'] ?>"/>
-                                                <input name="reply_uid" id="" type="hidden"
-                                                       value="<?php echo $v['uid'] ?>"/>
-                                                <input name="reply_username" id="" type="hidden"
-                                                       value="<?php echo $v['username']; ?>"/>
-                                                <div class="form-group">
-                                                 <textarea class="form-control" class="comment_content" name="content" style="height: 80px; width: 500px;"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-info comment_click"
-                                                            id="comment-submit">提交
-                                                    </button>
-                                                </div>
-                                            </form>
+                                    <form method="post" action="<?php echo site_url('comment/comment_post') ?>">
+                                        <input name="post_id" id="post_id" type="hidden"
+                                               value="<?php echo $post['post_id'] ?>"/>
+                                        <input name="comment_id" id="post_id" type="hidden"
+                                               value="<?php echo $v['id'] ?>"/>
+                                        <input name="reply_uid" id="" type="hidden"
+                                               value="<?php echo $v['uid'] ?>"/>
+                                        <input name="reply_username" id="" type="hidden"
+                                               value="<?php echo $v['username']; ?>"/>
+                                        <div class="form-group">
+                                         <textarea class="form-control" class="comment_content" name="content" style="height: 80px; width: 550px;"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-info comment_click"
+                                                    id="comment-submit">提交
+                                            </button>
+                                        </div>
+                                    </form>
                                         </div>
                                     </div> 
                                     <!--             end 输入框-->

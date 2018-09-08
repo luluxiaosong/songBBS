@@ -40,7 +40,7 @@ class comment extends personal_Controller
             //更新帖子最后回复时间
             $this->db->where('post_id',$data['post_id'])->update('posts',array('reply_last_time'=> $data['replytime']));
 
-            echo "<script>alert('回复成功');</script>";
+            echo "<script>alert('回复成功');history.back();</script>";
         }else{
             echo "<script>alert('回复失败');history.back();</script>";
         }
