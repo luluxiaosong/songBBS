@@ -13,25 +13,18 @@
         color: white;
 
     }
-    #nav_form input,#nav_form button {
-    }
     #nav_form input{
         border-radius:8px;
-        /*border:1px solid #cccccc;*/
         width:110px;
-        /*text-indent:10px;*/
     }
     #nav_form input:focus{
         width:180px;
     }
     #nav_form button{
         border-radius:0 20px 20px 0;
-        /*background-color: #cccccc;*/
         border-left: 0px;
     }
-    nav a{
-        padding: 0px 10px 0px 10px;
-    }
+    
     #nav_img {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -50,43 +43,10 @@
         background-color: #eee !important;
     }
 </style>
-<script>
-
-    //下滑菜单
-    $(function(){
-        $('#nav_user_li,#nav_user_li div').mousemove(function () {
-            $('#nav_user_li').css("background-color","#148eef");
-            $('#nav_user_li > div').css("display","block");
-        })
-        $('#nav_user_li,#nav_user_li div').mouseout(function () {
-            $('#nav_user_li').css("background-color","#03a9f4");
-            $('#nav_user_li > div').css("display","none");
-        })
-    })
-
-    //ajax获取  @通知 和 私信未读提醒
-    <?php if(!empty($_SESSION['uid'])):?>
-    $(function () {
-            $.get(
-                '<?php echo site_url('personal/notice') ?>',
-                function(msg){
-                    console.log(msg);
-                    if(msg.replys > 0) {
-                        $('#replys_to_me').text("+" + msg.replys);
-                    }
-                    if(msg.messages > 0) {
-                        $('#messages').text("+" + msg.messages);
-                    }
-                },
-                'json'
-            )
-    })
-    <?php endif?>
-</script>
     <nav id="nav" class="navbar navbar-default navbar-fixed-top" >
         <div class="container-fluid">
             <div class="navbar-header"  >
-              <a class="navbar-brand" style="font-size: 22px; margin-left: 120px;" href="<?php  echo site_url('home'); ?>"> MyBBS</a>
+              <a class="navbar-brand" style="font-size: 22px; margin-left: 120px;" href="<?php  echo site_url(''); ?>"> MyBBS</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <form class="navbar-form navbar-left" id="nav_form" action="<?php echo site_url('home/search')?>" method="get" accept-charset="utf-8">
@@ -96,7 +56,7 @@
 <!--              <button class="btn btn-default"  type="submit" ><span class="glyphicon glyphicon-search" style="color: #27943C;"></span></button>-->
           </form>
             <ul class="nav navbar-nav navbar-left">
-                <li id="home" class="<?php if(@$nav_active == 'home') echo 'nav_selected' ?>"><a  href="<?php echo site_url('home')?>">首页</a></li>
+                <li id="home" class="<?php if(@$nav_active == 'home') echo 'nav_selected' ?>"><a  href="<?php echo site_url('')?>">首页</a></li>
                 <li id="topic" class="<?php if(@$nav_active == 'topic') echo 'nav_selected' ?>"><a href="<?php echo site_url('topic/topic_list')?>" title="所有话题">话题</a></li>
 <!--                <li id="user" class="--><?php //if(@$nav_active == 'user') echo 'nav_selected' ?><!--"><a href="--><?php //echo site_url('user/user_list')?><!--">会员</a></li>-->
 <!--                <li id="work"><a href="">作品</a></li>-->
@@ -129,3 +89,35 @@
          </div>
         </div>
     </nav>
+<script>
+    //下滑菜单
+    $(function(){
+        $('#nav_user_li,#nav_user_li div').mousemove(function () {
+            $('#nav_user_li').css("background-color","#148eef");
+            $('#nav_user_li > div').css("display","block");
+        })
+        $('#nav_user_li,#nav_user_li div').mouseout(function () {
+            $('#nav_user_li').css("background-color","#03a9f4");
+            $('#nav_user_li > div').css("display","none");
+        })
+    })
+
+    //ajax获取  @通知 和 私信未读提醒
+    <?php if(!empty($_SESSION['uid'])):?>
+    $(function () {
+            $.get(
+                '<?php echo site_url('personal/notice') ?>',
+                function(msg){
+                    console.log(msg);
+                    if(msg.replys > 0) {
+                        $('#replys_to_me').text("+" + msg.replys);
+                    }
+                    if(msg.messages > 0) {
+                        $('#messages').text("+" + msg.messages);
+                    }
+                },
+                'json'
+            )
+    })
+    <?php endif?>
+</script>
