@@ -12,7 +12,7 @@
 <?php $this->load->view('home/common/nav')?>
 <!--主框 -->
  <div  style="margin: auto; padding:12px 20px 30px 12px; width: 70%; height: auto; background-color: #FEFEFE;  border-radius: 4px;">
-       <div style="width: 70%">
+       <div style="width: 75%">
             <h4  style="margin-top: 10px; padding-bottom: 6px; border-bottom: #cccccc 1px solid">&nbsp;搜索结果 </h4>
             <ul>
                 <?php $this->load->view('home/common/post_list') ?>
