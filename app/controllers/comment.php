@@ -21,11 +21,13 @@ class comment extends personal_Controller
         );
         //时间间隔20秒
         $last_time = $this->comment_m->last_time($_SESSION['uid']);
-        if($last_time < 30 ){
-            exit("<script>alert('回复太频繁，请30秒稍后再回复');history.back();</script>");
+        if($last_time < 20 ){
+            exit("<script>alert('回复太频繁，请20秒稍后再回复');history.back();</script>");
         }
-        //查询本条回复楼层
+        //如果是二级回复 查询本条回复楼层
+        if($this->input->post('comment_id')){
         $reply_flow = $this->comment_m->flow($this->input->post('comment_id'));
+         }
         //查询最大楼层数
         $flow_max = $this->comment_m->flow_max($this->input->post('post_id'));
         $data['flow'] = $flow_max + 1;
@@ -38,7 +40,7 @@ class comment extends personal_Controller
             //更新帖子最后回复时间
             $this->db->where('post_id',$data['post_id'])->update('posts',array('reply_last_time'=> $data['replytime']));
 
-            echo "<script>alert('回复成功');history.back();</script>";
+            echo "<script>alert('回复成功');</script>";
         }else{
             echo "<script>alert('回复失败');history.back();</script>";
         }
