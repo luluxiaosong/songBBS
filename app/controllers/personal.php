@@ -192,14 +192,13 @@ class personal extends personal_Controller
         $config['max_width'] = '10240000';
         $config['max_height'] = '7680000';
         //获取图片后缀名
-        
         $this->load->library('upload', $config);
-
+        //上传成功
         if ($this->upload->do_upload()) {
           $file_info =  $this->upload->data();
           $file_name = $file_info['file_name'];
             $this->db->where('uid',$_SESSION['uid'])->update('users',array('avatar'=>'/uploads/avatar/'.$file_name));
-            $_SESSION['avatar'] = '/uploads/avatar/'.$config['file_name'];
+            $_SESSION['avatar'] = '/uploads/avatar/'.$file_name;
            echo "<script>alert('头像修改成功');history.back();</script>;";
         } else {
            echo "<script>alert('头像修改失败');history.back();</script>;";

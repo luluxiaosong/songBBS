@@ -23,7 +23,7 @@
 |
 */
 //$config['base_url'] = 'http://mybbs.com'; //根网址
-$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST']; //根地址
+$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST']; //服务器地址
 
 /*
 |--------------------------------------------------------------------------
