@@ -46,7 +46,7 @@
     <nav id="nav" class="navbar navbar-default navbar-fixed-top" >
         <div class="container-fluid">
             <div class="navbar-header"  >
-              <a class="navbar-brand" style="font-size: 22px; margin-left: 120px;" href="<?php  echo site_url(''); ?>"> MyBBS</a>
+              <a class="navbar-brand" style="font-size: 22px; margin-left: 120px;" href="<?php  echo site_url(''); ?>"> SongBBS</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <form class="navbar-form navbar-left" id="nav_form" action="<?php echo site_url('home/search')?>" method="get" accept-charset="utf-8">

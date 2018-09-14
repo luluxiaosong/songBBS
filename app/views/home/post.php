@@ -9,22 +9,23 @@
 <style>
 </style>
 <body>
-<?php $this->load->view('home/common/nav'); ?>
-    <div class="main">
-        <!-- 左侧 帖子详细内容           -->
-        <div class="main_left">
-            <div class="post_div" style="margin:12px;">
-                <h3 style="padding: 0px 20px 10px 0px;"><?php echo $post['title'] ?></h3>
-                <div class="text-muted" style="padding-bottom: 5px;">
-                     <a href="<?php echo site_url('user/user_home/' . $post['uid']) ?>" target="_blank">
-                        <img src="<?php echo base_url($post['avatar']) ?>" style="height: 50px; width: 50px; border-radius: 50%;"/>&nbsp; <?php echo $post['username'] ?>
-                     </a>&nbsp;
-                     <span><?php echo wordTime($post['addtime']); ?></span>&nbsp;&nbsp;
+ <?php $this->load->view('home/common/nav'); ?>
+ <div class="main">
+    <!-- 左侧 帖子详细内容           -->
+    <div class="main_left">
+        <div class="post_div" style="margin:12px;">
+            <h3 style="padding: 0px 20px 10px 0px;"><?php echo $post['title'] ?></h3>
+            <div class="text-muted" style="padding-bottom: 5px;">
+                <a href="<?php echo site_url('user/user_home/' . $post['uid']) ?>" target="_blank">
+                   <img src="<?php echo base_url($post['avatar']) ?>" style="height: 50px; width: 50px; border-radius: 50%;"/>&nbsp; <?php echo $post['username'] ?>
+                </a>&nbsp;
+                <span><?php echo wordTime($post['addtime']); ?></span>&nbsp;&nbsp;
                      <?php if ($post['is_good'] == 1): ?><span class="post_good">精</span>&nbsp;<?php endif ?> <?php if ($post['is_top'] == 1): ?><span class="post_top">置顶</span><?php endif ?>
                 </div>
                 <div id="content_view" style="margin: 8px 0 15px 0;"><?php echo $post['content'] ?>
                 </div>
                 <a name="comment" href="#"></a><!-- 回复描点-->
+                <!-- 登陆用户显示 -->
                 <?php if (!empty($_SESSION['uid'])): ?> 
                 <div style="margin-top: 16px;">
                     <a class="active_btn reply_post" href="javascript:void(0);">回复</a> &nbsp;&nbsp; 
@@ -33,33 +34,34 @@
                     <?php endif ?> &nbsp;&nbsp;
                      <!--   管理员操作-->
                         <?php if (!empty($_SESSION['uid']) && $_SESSION['user_type'] == 1): ?>
-                            <div style="display: inline; position: relative; ">
-                                <a href="javascript:void (0);" class="admin" style="padding:2px;  border: 1px solid blue; margin-right: 6px;"><span class="glyphicon glyphicon-chevron-down"></span> &nbsp;</a>
-                                    <div class="admin_box" style="position: absolute; top:19px; left:0px; width: 70px; display:none; border: 1px solid blue;  background-color: white; z-index: 10;">
-                                        <ul>
-                                        <?php if ($post['is_good'] == 1): ?>
-                                            <a href="<?php echo site_url('admin/post/good_del/' . $post['post_id']) ?>">
-                                                    <li>取消加精</li>
-                                            </a>
-                                        <?php else: ?>
-                                            <a href="<?php echo site_url('admin/post/good/' . $post['post_id']) ?>">
-                                                    <li>加精</li>
-                                            </a>
-                                        <?php endif ?>
-                                        <?php if ($post['is_top'] == 1): ?>
-                                            <a href="<?php echo site_url('admin/post/top_del/' . $post['post_id']) ?>">
-                                                    <li>取消置顶</li>
-                                                </a>
-                                            <?php else: ?>
-                                                <a href="<?php echo site_url('admin/post/top/' . $post['post_id']) ?>">
-                                                    <li>置顶</li>
-                                                </a>
-                                            <?php endif ?>
-                                            <a href="<?php echo site_url('admin/post/del/' . $post['post_id']) ?>">
-                                                <li>删除</li>
-                                            </a>
-                                        </ul>
-                                    </div>
+                        <div style="display: inline; position: relative; ">
+                            <a href="javascript:void (0);" class="admin" style="padding:2px;  border: 1px solid #999; margin-right: 6px;"><span class="glyphicon glyphicon-chevron-down"></span> &nbsp;
+                            </a>
+                            <div class="admin_box" style="position: absolute; top:19px; left:0px; width: 70px; display:none; border: 1px solid #999;  background-color: #eee; z-index: 10;">
+                                <ul style="line-height: 30px;">
+                                    <?php if ($post['is_good'] == 1): ?>
+                                    <a href="<?php echo site_url('admin/post/good_del/' . $post['post_id']) ?>">
+                                        <li>&nbsp;取消加精</li>
+                                    </a>
+                                    <?php else: ?>
+                                    <a href="<?php echo site_url('admin/post/good/' . $post['post_id']) ?>">
+                                        <li>&nbsp;加精</li>
+                                    </a>
+                                    <?php endif ?>
+                                    <?php if ($post['is_top'] == 1): ?>
+                                    <a href="<?php echo site_url('admin/post/top_del/' . $post['post_id']) ?>">
+                                        <li>&nbsp;取消置顶</li>
+                                    </a>
+                                    <?php else: ?>
+                                    <a href="<?php echo site_url('admin/post/top/' . $post['post_id']) ?>">
+                                        <li>&nbsp;置顶</li>
+                                    </a>
+                                    <?php endif ?>
+                                    <a href="<?php echo site_url('admin/post/del/' . $post['post_id']) ?>">
+                                        <li>&nbsp;删除</li>
+                                    </a>
+                                </ul>
+                            </div>
                             </div>
                         <?php endif ?>
                      <!-- end 管理员操作-->
@@ -74,7 +76,7 @@
                                            value="<?php echo $comment_num + 1; ?>"/>
                                     <div class="form-group">
                                         <textarea id="content" class="comment_content" name="content"
-                                                  style="height: 150px; width: 650px;"></textarea>
+                                                  style="height: 100px; width: 600px;"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-info" id="comment-submit">提交</button>
@@ -83,59 +85,62 @@
                             </div>
                         </div>
                     <?php endif ?>
-            </div>
-            <!-- 回复列表-->
-            <div class="coment_nav" style="margin-top:20px; padding-left: 8px; border-bottom: 1px #999 solid; ">
-                <span style="font-size: 17px;"><?php echo $comment_num; ?>条回复</span>
-            </div>
-            <div  style="margin: 4px 10px 4px 12px">
-                <?php if (!empty($comments)) foreach ($comments as $v)  : ?>
-                <div class="comment_div" style="padding-bottom: 10px;  padding-top: 10px;">
-                    <div style="float: left; text-align: center; margin:4px 20px 6px 0px;">
-                        <img src="<?php echo base_url($v['avatar']) ?>" style="display: block; margin-bottom: 5px; height: 50px; width: 50px; border-radius: 50%"/>
-                        <a href="<?php echo site_url('user/user_home/'.$v['uid']) ?>"><?php echo $v['username'] ?></a>
-                        <p class="text-muted"><?php if($post['uid']==
-                        $v['uid']) echo '楼主' ?></p>   
-                    </div>           
-                    <div class="comment_" style="float: left; padding: 4px 6px 4px 8px; width: 590px; border:1px #ccc solid; border-radius: 8px;">
-                        <div style="margin:6px 10px 10px 0; min-height: 70px; "><?php echo $v['content'] ?></div>
-                            <div class="hover_display text-muted" >
-                                 <!--判断是否已赞 -->
-                                 <a class="text-muted thumb_up <?php if ( !empty($_SESSION['thumb_'. $v['id']])) echo 'thumb_up_ed' . '" ' . ' title=' . '"' . '已赞'  ?>" href="javascript:void(0);"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="thumbs"><?php echo $v['thumb_up'] ?></span></a><input class="comment_id" type="hidden" value="<?php echo $v['id'] ?>"/>
-                                 <a class="reply_user" style="margin-left: 10px" href="javascript:void(0);">回复</a>
-                                 <!--  管理员操作 删除-->
-                                 <?php if (!empty($_SESSION['uid']) && $_SESSION['user_type'] == 1): ?>
-                             <a class="comment_del" style="margin-left: 10px;" href="javascript:void(0);"><span class="glyphicon glyphicon-trash""></span></a><input class="comment_id" type="hidden" value="<?phpecho $v['id'] ?>"/>
-                                 <?php endif ?>
-                                 <span style="float: right;margin-right: 10px;"><?php echo $v['flow']?>楼</span>
-                                 <span style="float: right;margin-right: 10px;"><?php echo Wordtime($v['replytime']) ?></span>
-                                    
-                                 
-                            </div>
-                            <!--            输入框  -->
-                            <div class="comment_box_user" style="display: none; padding: 10px 0px 10px 20px; ">
-                                <div class="comment_post">
-                                    <form method="post" action="<?php echo site_url('comment/comment_post') ?>">
-                                        <input name="post_id" id="post_id" type="hidden"
-                                               value="<?php echo $post['post_id'] ?>"/>
-                                        <input name="comment_id" id="post_id" type="hidden"
-                                               value="<?php echo $v['id'] ?>"/>
-                                        <input name="reply_uid" id="" type="hidden"
-                                               value="<?php echo $v['uid'] ?>"/>
-                                        <input name="reply_username" id="" type="hidden"
-                                               value="<?php echo $v['username']; ?>"/>
-                                        <div class="form-group">
-                                         <textarea class="form-control" class="comment_content" name="content" style="height: 80px; width: 550px;"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-info comment_click"
-                                                    id="comment-submit">提交
-                                            </button>
-                                        </div>
-                                    </form>
-                                        </div>
-                                    </div> 
-                                    <!--             end 输入框-->
+                    <!-- end 登陆用户显示 -->
+    </div>
+    <!-- end 帖子详细内容 -->
+
+    <!-- 回复列表-->
+    <div class="coment_nav" style="margin-top:20px; padding-left: 8px; border-bottom: 1px #ccc solid; ">
+        <!-- <span style="font-size: 17px;"><?php //echo $comment_num; ?>条回复</span> -->
+    </div>
+    <div style="margin: 4px 10px 4px 12px">
+        <?php if (!empty($comments)) foreach ($comments as $v)  : ?>
+        <div class="comment_div" style="padding-bottom: 10px;  padding-top: 10px; border-bottom: 1px solid #ccc">
+            <img src="<?php echo base_url($v['avatar']) ?>" style="margin-right: 8px; height: 35px; width: 35px; border-radius: 50%"/>
+            <a href="<?php echo site_url('user/user_home/'.$v['uid']) ?>"><?php echo $v['username'] ?></a>
+            <span class="text-muted"><?php if($post['uid']==$v['uid']) echo '(楼主)' ?></span>&nbsp;.&nbsp; 
+            <span class="text-muted"><?php echo Wordtime($v['replytime']) ?></span>&nbsp;.&nbsp;
+            <!--点赞 -->
+             <a class="text-muted thumb_up <?php if ( !empty($_SESSION['thumb_'. $v['id']])) echo 'thumb_up_ed' . '" ' . ' title=' . '"' . '已赞'  ?>" href="javascript:void(0);"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="thumbs"><?php echo $v['thumb_up'] ?></span></a>
+             <input class="comment_id" type="hidden" value="<?php echo $v['id'] ?>"/>
+             <!-- end 点赞 -->
+             <span style="float: right;margin-right: 10px;"><?php echo $v['flow']?>楼</span>
+             <!-- 内容 -->
+             <div class="comment_" style="padding: 4px 6px 4px 8px;">
+                    <div style="margin:6px 10px 10px 0; min-height: 50px; "><?php echo $v['content'] ?></div>
+                        <div class="hover_display text-muted" >
+                            <a class="reply_user text-muted" href="javascript:void(0);">回复</a>
+                            <input class='ueditor_id' type="hidden" value="<?php echo $v['flow'].'_ueditor'; ?>">
+                             <!--  管理员操作 删除-->
+                             <?php if (!empty($_SESSION['uid']) && $_SESSION['user_type'] == 1): ?>
+                             <a class="comment_del" style="margin-left: 10px;" href="javascript:void(0);"><span class="glyphicon glyphicon-trash text-muted""></span></a><input class="comment_id" type="hidden" value="<?php echo $v['id'] ?>"/>
+                             <?php endif ?>
+                            <!-- end 管理员操作 删除--> 
+                        </div>
+                        <!--  输入框  -->
+                        <div class="comment_box_user" style="display: none; padding: 10px 0px 10px 0px; ">
+                            <div class="comment_post">
+                                <form method="post" action="<?php echo site_url('comment/comment_post') ?>">
+                                    <input name="post_id" id="post_id" type="hidden"
+                                           value="<?php echo $post['post_id'] ?>"/>
+                                    <input name="comment_id" id="post_id" type="hidden"
+                                           value="<?php echo $v['id'] ?>"/>
+                                    <input name="reply_uid" id="" type="hidden"
+                                           value="<?php echo $v['uid'] ?>"/>
+                                    <input name="reply_username" id="" type="hidden"
+                                           value="<?php echo $v['username']; ?>"/>
+                                    <div class="form-group">
+                                     <textarea   id="<?php echo $v['flow'].'_ueditor'; ?>" class="comment_content" name="content" style="height: 80px; width: 550px;"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info comment_click"
+                                                id="comment-submit">提交
+                                        </button>
+                                    </div>
+                                </form>
+                                    </div>
+                                </div> 
+                        <!--  end 输入框-->
                                 </div>
                             <div style="clear: both"></div>
                         </div>
@@ -188,7 +193,7 @@
         })
     })
     //编辑器 一级评论
-    $(function () {
+   /* $(function () {
         var ue = UE.getEditor('content', {
             toolbars: [
                 [
@@ -207,10 +212,10 @@
             wordCount: false,//字数统计
             elementPathEnabled: false //路径
         });
-    })
+    })*/
     //显示主贴回复输入框
     $(function () {
-        $('.reply_post').click(function () {
+        $('.reply_post').click(function () {            
             if (username != '') {
                 var obj_this = $(this);
                 var obj_comment_box = obj_this.parents().siblings('#comment_box');
@@ -218,6 +223,25 @@
                 if (comment_box_display == 'none') {
                     obj_comment_box.css('display', 'block');
                     obj_this.text('收起');
+                    //生成编辑器
+                     var ue = UE.getEditor('content', {
+                        toolbars: [
+                            [
+                                'bold',//加粗
+                                'italic', //斜体
+                                //'horizontal', //分隔线
+                                //'simpleupload', //单图上传
+                                //'emotion', //表情
+                                'scrawl', //涂鸦
+                                // 'fullscreen', //全屏
+                                //'attachment', //附件
+                            ]
+                        ],
+                        autoHeightEnabled: true,
+                        autoFloatEnabled: true,
+                        wordCount: false,//字数统计
+                        elementPathEnabled: false //路径
+                    });
                 } else {
                     obj_comment_box.css('display', 'none');
                     obj_this.text('回复');
@@ -231,14 +255,36 @@
     //显示回复贴回复输入框
     $(function () {
         $('.reply_user').click(function () {
+   
             //判断登陆
             if (username != '') {
                 var obj_this = $(this);
                 var obj_comment_box = obj_this.parents().siblings('.comment_box_user');
                 var comment_box_display = obj_comment_box.css('display');
+                var ueditor_id = obj_this.siblings('.ueditor_id').val();
+                // console.log(ueditor_id);
                 if (comment_box_display == 'none') {
                     obj_comment_box.css('display', 'block');
                     obj_this.text('收起');
+                    //生成编辑器
+                     var ue = UE.getEditor(ueditor_id, {
+                        toolbars: [
+                            [
+                                'bold',//加粗
+                                'italic', //斜体
+                                //'horizontal', //分隔线
+                                //'simpleupload', //单图上传
+                                //'emotion', //表情
+                                'scrawl', //涂鸦
+                                // 'fullscreen', //全屏
+                                //'attachment', //附件
+                            ]
+                        ],
+                        autoHeightEnabled: true,
+                        autoFloatEnabled: true,
+                        wordCount: false,//字数统计
+                        elementPathEnabled: false //路径
+                    });
                 } else {
                     obj_comment_box.css('display', 'none');
                     obj_this.text('回复');
@@ -248,7 +294,7 @@
             }
         })
     })
-    // 提交回复验证 5-300字
+    // 提交回复验证 5-1000字
     $(function () {
         $('form').submit(function () {
             var text = $(this).find('textarea').val().trim();
@@ -257,6 +303,9 @@
             if (text.length < 1) {
                 alert('不能为空');
                 return false;
+            }
+            if(text.length > 1000){
+                alert('不能超过1000字')
             }
         });
     })
