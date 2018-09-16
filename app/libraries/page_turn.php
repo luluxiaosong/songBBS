@@ -128,7 +128,7 @@ EOD;
        }
        //总数
        $rows_html =<<<EOD
-<span>共{$this->pages_count}页，{$this->rows}条记录</span>
+<span>共{$this->pages_count}页</span>
 EOD;
 
        //拼接

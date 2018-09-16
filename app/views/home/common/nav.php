@@ -1,52 +1,8 @@
-<style>
-    #nav a:hover,#nav a:focus{
-       background-color: #148eef;
-       color: white;
-       text-decoration:none;
-    }
-    #nav {
-        background-color: #03a9f4;
-        border:none;
-        border-radius: 0px;
-    }
-    #nav a {
-        color: white;
 
-    }
-    #nav_form input{
-        border-radius:8px;
-        width:110px;
-    }
-    #nav_form input:focus{
-        width:180px;
-    }
-    #nav_form button{
-        border-radius:0 20px 20px 0;
-        border-left: 0px;
-    }
-    
-    #nav_img {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    #nav_user_li a:{
-
-    }
-    .user_select a{
-        display: block;
-        line-height: 30px;
-        padding: 4px 5px 4px 5px;
-        color: #0785d1 !important;
-        text-align: center;
-    }
-    .user_select a:hover {
-        background-color: #eee !important;
-    }
-</style>
     <nav id="nav" class="navbar navbar-default navbar-fixed-top" >
         <div class="container-fluid">
             <div class="navbar-header"  >
-              <a class="navbar-brand" style="font-size: 22px; margin-left: 120px;" href="<?php  echo site_url(''); ?>"> SongBBS</a>
+              <a class="navbar-brand" style="font-size: 22px; margin-left: 120px; color: #16a295" href="<?php  echo site_url(''); ?>"> SongBBS</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <form class="navbar-form navbar-left" id="nav_form" action="<?php echo site_url('home/search')?>" method="get" accept-charset="utf-8">
@@ -67,13 +23,13 @@
                 <?php if (empty($_SESSION['uid'])){ ?>
                 <li><a href="<?php echo site_url('user/register') ?>""> 注册</a></li>
                 <li><a href="<?php echo site_url('user/login') ?>"  >登录</a></li>
-                    <!-- 登陆状态 -->
+                    <!-- end 登陆状态 -->
                 <?php }else{ ?>
                     <li><a  href="<?php echo site_url('personal/comment_for_me') ?>" title="评论@我" >@ <span id="replys_to_me" style="color:#ffeb3b;font-size: 14px"> </span> </a></li>
                     <li> <a  href="<?php echo site_url('personal/message')?>" title="私信"><span class="glyphicon glyphicon-envelope"  style="color:  ;position:relative;top:2px;"></span> <span id="messages" style="color:#ffeb3b;font-size: 14px"></span> </a></li>
-                    <li id="nav_user_li"  class="" style="position:relative; z-index:2;">
+                    <li id="nav_user_li"  style="position:relative; z-index:2;">
                     <a id="nav_img" href="<?php echo site_url('personal/home')?>" class="dropdown-toggle" ><img src="<?php echo base_url($_SESSION['avatar'])?>" class="img-circle" style="display: inline; height: 30px; width: 30px"> <?php echo $_SESSION['username']; ?></a>
-                    <div class="user_select" style="position:absolute;top:50px;left:-20px; width: 140px;height:;background-color:white; border: #6dbfff 1px solid">
+                    <div class="user_select" style="position:absolute;top:50px;left:-20px; width: 140px; border:#6dbfff 1px solid; background-color: white">
                         <!--登陆信息                -->
                         <a href="<?php echo site_url('personal/collection')?>">收藏</a>
                         <a href="<?php echo site_url('personal/follow')?>">关注</a>
@@ -93,11 +49,11 @@
     //下滑菜单
     $(function(){
         $('#nav_user_li,#nav_user_li div').mousemove(function () {
-            $('#nav_user_li').css("background-color","#148eef");
+            $('#nav_user_li').css("background-color","#ccc");
             $('#nav_user_li > div').css("display","block");
         })
         $('#nav_user_li,#nav_user_li div').mouseout(function () {
-            $('#nav_user_li').css("background-color","#03a9f4");
+            $('#nav_user_li').css("background-color","#f5f5f5");
             $('#nav_user_li > div').css("display","none");
         })
     })
