@@ -3,7 +3,7 @@
         <div style="margin-bottom: 8px;">
             <a href="<?php echo site_url('user/user_home/' . $v['uid']) ?>" target="_blank" style="float: left; margin-right: 16px; margin-left: 16px; text-align: center;">
                 <img alt="<?php echo $v['username'] ?>"src="<?php echo base_url($v['avatar']) ?>" style="border-radius:50%; height:46px; margin-bottom:5px; width:46px; "/> 
-                <div><?php echo $v['username']?></div>
+                <div class="text-muted"><?php echo $v['username']?></div>
             </a>
             <div style="float: left; width: 580px;">
                 <a class="post_title" href="<?php echo site_url('post/show/' . $v['post_id']) ?>" target="_blank" >

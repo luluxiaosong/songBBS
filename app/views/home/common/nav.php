@@ -1,5 +1,5 @@
 
-    <nav id="nav" class="navbar navbar-default navbar-fixed-top" >
+    <nav id="nav" class="navbar navbar-default " >
         <div class="container-fluid">
             <div class="navbar-header"  >
               <a class="navbar-brand" style="font-size: 22px; margin-left: 120px; color: #16a295" href="<?php  echo site_url(''); ?>"> SongBBS</a>
