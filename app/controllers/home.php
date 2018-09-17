@@ -19,7 +19,7 @@ class Home extends base_Controller
         $redis = new redis();
         if($redis->connect('127.0.0.1',6379)){
         echo $redis->get('lu');exit;
-    }
+        }
         //导航选项
         $data['nav_active'] = 'home';
         //当前页 默认为1
