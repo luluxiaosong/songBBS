@@ -16,10 +16,15 @@ class Home extends base_Controller
     */
     public function index()
     {
-        $redis = new redis();
-        if($redis->connect('127.0.0.1',6379)){
-        echo $redis->get('lu');exit;
-        }
+       //redis缓存 如果key存在直接输出 不存在在最后写入
+       // $this->load->library('RedisMy');
+       // $this->redismy->key = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+       // if($this->redismy->exists()){
+       //      $data = $this->redismy->get();
+       //      $this->load->view('home/home.php', $data);
+       //      return;
+       // }
+
         //导航选项
         $data['nav_active'] = 'home';
         //当前页 默认为1
@@ -40,7 +45,7 @@ class Home extends base_Controller
 
         $data['topics'] = $this->topic_m->get_topics_hot();
         //发贴统计
-        $data['posts_count_today'] = $this->post_m->posts_count_today();
+        $data['posts_count_today'] = (string)$this->post_m->posts_count_today();
         $data['posts_count_all'] = $this->post_m->posts_count_all();
         //热门帖子 10条 按评论数排
         // 按时间查询 这里不能缓存
@@ -49,14 +54,19 @@ class Home extends base_Controller
         $this->db->cache_on();
         $data['topics_all'] = $this->topic_m->topics_all();
         $this->db->cache_off(); 
+     
+        //写入redis
+        // $this->redismy->value = $data;
+        // $this->redismy->set();
+
         $this->load->view('home/home.php', $data);
     }
 
     //搜索
     public function search()
     {
-        //热门话题导航修正
-        $data['topic']['topic_id'] = 'search';
+        //热门话题导航 
+        //$data['topic']['topic_id'] = 'search';
         $word_key = $this->input->get('word_key',true);
         $word_key =trim($word_key);
         if(empty($word_key)){
@@ -68,7 +78,7 @@ class Home extends base_Controller
         //全部话题
         $data['topics_all'] = $this->topic_m->topics_all();
         //热门话题
-        $data['topics'] = $this->topic_m->get_topics_hot();
+        //$data['topics'] = $this->topic_m->get_topics_hot();
         $this->load->view('home/search', $data);
     }
 }

@@ -25,9 +25,9 @@ class Post extends base_Controller
     public function post_add()
     {
         $data = array(
-            'title' => $this->input->post('title'),
-            'content' => $this->input->post('content'),
-            'topic_id' => $this->input->post('topic_id'),
+            'title' => $this->input->post('title',TRUE),
+            'content' => $this->input->post('content',TRUE),
+            'topic_id' => $this->input->post('topic_id',TRUE),
             'uid' => $_SESSION['uid'],
             'addtime' => time(),
             'reply_last_time'=>time(),
@@ -43,14 +43,14 @@ class Post extends base_Controller
         //内容不能为空
         $sum_content = mb_strlen($data['content']);
         if ($sum_content == 0 || $sum_content > 30000) {
-            echo "<script>alert('内容不符合要求!');window.history.back();</script>";
-            exit;
+           exit("<script>alert('内容不符合要求!');window.history.back();</script>");
+            ;
         }
 
         //标题过滤所有标签
         $data['title'] = strip_tags($data['title']);
-        //内容过滤掉js 标签
-        $data['content'] = strip_tags($data['content']);
+        //内容过滤掉js
+        $data['content'] = $data['content'];
 
         //发布成功 跳到详情页
         if ($new_post_id = $this->post_m->add($data)) {
@@ -59,7 +59,6 @@ class Post extends base_Controller
               $this->db->cache_delete('home','posts_by_topic');
               $url = site_url('post/show/'. $new_post_id);
                 echo "<script>alert('发布成功');location.href = '$url';</script>";
-                return;
         }
     }
 
