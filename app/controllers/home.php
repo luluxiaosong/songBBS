@@ -18,7 +18,7 @@ class Home extends base_Controller
     {
        //redis缓存 如果key存在直接输出 不存在在最后写入
        // $this->load->library('RedisMy');
-       // $this->redismy->key = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+       // $this->redismy->key = md5($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
        // if($this->redismy->exists()){
        //      $data = $this->redismy->get();
        //      $this->load->view('home/home.php', $data);

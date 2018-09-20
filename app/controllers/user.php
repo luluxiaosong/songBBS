@@ -8,6 +8,7 @@ class user extends base_Controller
         parent::__construct();
         $this->load->model('user_m');
         $this->load->model('post_m');
+        $this->load->helper('form');
     }
 
     //ajax检测用户名

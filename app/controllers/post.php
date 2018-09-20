@@ -13,7 +13,7 @@ class Post extends base_Controller
     //帖子 编辑界面
     public function post_edit()
     {
-        $topic_id = $this->uri->segment(3);
+        $topic_id = (int)$this->uri->segment(3);
         //当前话题数据
         $this->load->model('topic_m');
         $data['topic'] = $this->topic_m->get_topic_by_topic_id($topic_id);
@@ -27,24 +27,22 @@ class Post extends base_Controller
         $data = array(
             'title' => $this->input->post('title',TRUE),
             'content' => $this->input->post('content',TRUE),
-            'topic_id' => $this->input->post('topic_id',TRUE),
+            'topic_id' => (int)$this->input->post('topic_id',TRUE),
             'uid' => $_SESSION['uid'],
             'addtime' => time(),
             'reply_last_time'=>time(),
             'views' => 0
         );
-        //验证数据 标题字数
+        //验证标题字数 前端已检测，此处是安全处理
         $sum = mb_strlen($data['title']);
-        if ($sum == 0 or $sum > 50) {
-            echo "<script>alert('标题不符合要求！');window.history.back();</script>";
+        if ($sum == 0 or $sum > 60) {
             exit;
         }
 
-        //内容不能为空
+        //内容不能为空或超出 前端已检测，此处是安全处理
         $sum_content = mb_strlen($data['content']);
         if ($sum_content == 0 || $sum_content > 30000) {
-           exit("<script>alert('内容不符合要求!');window.history.back();</script>");
-            ;
+           exit;
         }
 
         //标题过滤所有标签

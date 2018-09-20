@@ -15,7 +15,8 @@
                         <h3 class="panel-title">登录</h3>
                     </div>
                     <div class="panel-body">
-					<form accept-charset="UTF-8" action="<?php echo site_url('user/login');?>" class="form-horizontal" id="new_user" method="post" novalidate="novalidate">
+                    <?php echo form_open('user/login',['class'=>'form-horizontal','id'=>'new_user','method'=>'post','novalidate'=>'novalidate']) ?>
+					<!-- form accept-charset="UTF-8" action="<?php// echo site_url('user/login');?>" class="form-horizontal" id="new_user" method="post" novalidate="novalidate"> -->
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="user_nickname">用户名</label>
 						<div class="col-md-6">
