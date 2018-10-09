@@ -183,7 +183,7 @@
                     {username: username, password: password, password_confirm: password_confirm, email: email, vcode: vcode},
                     function (msg) {
                         if (msg == "yes") {
-                            alert("注册成功, 立即登陆");
+                            confirm("注册成功, 立即登陆");
                             location.href = "<?php echo site_url('user/login')?>";
                         }else{
                             alert('未知错误'+msg);
@@ -191,7 +191,7 @@
                     },
                 )
             }else{
-                $(".post_tips").text("输入有误");
+                $(".post_tips").text("请检查输入");
             }
         })
     })

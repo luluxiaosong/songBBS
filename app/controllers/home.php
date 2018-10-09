@@ -16,7 +16,7 @@ class Home extends base_Controller
     public function index()
     {
        //redis缓存 如果key存在直接输出 不存在在最后写入
-       // $this->load->library('RedisMy');
+//        $this->load->library('RedisClass');
        // $this->redismy->key = md5($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
        // if($this->redismy->exists()){
        //      $data = $this->redismy->get();
@@ -41,16 +41,15 @@ class Home extends base_Controller
         //帖子列表 全部 分页
         $data['posts'] = $this->post_m->get_posts_all($param['per_page'], $left);
         //热门话题
-
         $data['topics'] = $this->topic_m->get_topics_hot();
         //发贴统计
-        $data['posts_count_today'] = (string)$this->post_m->posts_count_today();
+        $data['posts_count_today'] = $this->post_m->posts_count_today();
         $data['posts_count_all'] = $this->post_m->posts_count_all();
         //热门帖子 10条 按评论数排
         // 按时间查询 这里不能缓存
         $data['posts_hot'] = $this->post_m->posts_hot();
         //全部话题
-        $this->db->cache_on();
+        $this->db->cache_on(); //缓存
         $data['topics_all'] = $this->topic_m->topics_all();
         $this->db->cache_off(); 
      

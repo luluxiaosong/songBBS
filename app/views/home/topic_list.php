@@ -16,7 +16,7 @@
             <div class="panel panel-body">
 <?php foreach( $topics as $v ) :?>
      <?php if($v['topic_pid'] == 0 ):?>
-     <h3 style="text-align: center"><?php echo $v['topic_name']?></h3>
+     <h3 style="text-align: center; padding-top: 16px; padding-bottom: 10px;"><?php echo $v['topic_name']?></h3>
        <?php foreach ($topics as $vv):?>
         <?php if($vv['topic_pid'] == $v['topic_id']):?>
                 <a  href="<?php echo site_url('topic/topic_show/'.$vv['topic_id'])?>" style="float: left; width: 250px; height: 130px;  padding: 8px ; margin: 8px; border: 1px #cccccc solid">

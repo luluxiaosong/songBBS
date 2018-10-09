@@ -3,7 +3,7 @@
 *  redisdrive.class.php
 *  php redis 操作类
 **/
-class RedisMy{
+class RedisClass{
     //键名
     public $key ;
     //值

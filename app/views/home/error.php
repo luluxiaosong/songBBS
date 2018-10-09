@@ -18,7 +18,8 @@
 	<div id="container">
 			<h2>提示信息</h2>
 			<div class="alert alert-danger" role="alert">
-			非法用户uid			</div>
+                <?php echo $massage?>
+						</div>
 		    <p>
 						<a href="javascript:history.back();" class="alert-link">如果您的浏览器没有自动跳转，请点击这里</a>
 			<script language="javascript">setTimeout(function(){history.back();}, 1400);</script>

@@ -75,8 +75,14 @@ class user extends base_Controller
         ];
 
         if ($this->user_m->register($data)) {
-            //发送注册成功通知邮件。。。
-            echo "yes";
+
+            //发送注册成功通知邮件
+            //注册信息
+            $eamil_massage = '<h3>你在<a href="http://mybbs.song" target="_blank">mybbs.song</a>的注册用户名为:'.$username.'</h3>';
+            $this->load->library('email');
+            $this->email->send($email, 'mybbs.song注册信息', $eamil_massage);
+            //成功返回信息
+            echo 'yes';
         }
     }
 
@@ -181,6 +187,16 @@ class user extends base_Controller
         unset($_SESSION['username']);
         unset($_SESSION['user_type']);
         redirect('home');
+    }
+    //测试发送邮件
+    public function mail()
+    {
+        $this->load->library('email');
+       if($this->email->send('1764476604@qq.com', '测试', '<h1>测试邮件内容</h1>')){
+           echo '邮件发送测试成功：目标邮箱1764476604@qq.com，主题: 测试';
+       }
+
+
     }
 
 }
