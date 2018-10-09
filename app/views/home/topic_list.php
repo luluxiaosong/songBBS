@@ -15,16 +15,24 @@
         <div class="col-md-12" style="width: 97%;">
             <div class="panel panel-body">
 <?php foreach( $topics as $v ) :?>
-                <a  href="<?php echo site_url('topic/topic_show/'.$v['topic_id'])?>" style="float: left; width: 250px; height: 130px;  padding: 8px ; margin: 8px; border: 1px #cccccc solid">
+     <?php if($v['topic_pid'] == 0 ):?>
+     <h3 style="text-align: center"><?php echo $v['topic_name']?></h3>
+       <?php foreach ($topics as $vv):?>
+        <?php if($vv['topic_pid'] == $v['topic_id']):?>
+                <a  href="<?php echo site_url('topic/topic_show/'.$vv['topic_id'])?>" style="float: left; width: 250px; height: 130px;  padding: 8px ; margin: 8px; border: 1px #cccccc solid">
                     <div>
-                        <img src="<?php echo base_url($v['ico'])?>" style="width: 60px; height: 50px; border-radius: 6px; float: left; margin-right: 10px; margin-left: 2px"/>
+                        <img src="<?php echo base_url($vv['ico'])?>" style="width: 60px; height: 50px; border-radius: 6px; float: left; margin-right: 10px; margin-left: 2px"/>
                         <p style="padding-top: 12px; padding-bottom: 8px">
-                            <span style="font-size: 16px;"> <?php echo $v['topic_name'] ?></span>
+                            <span style="font-size: 16px;"> <?php echo $vv['topic_name'] ?></span>
                         </p>
                             <div class="clearfix"></div>
                     </div>
-                    <div style="color: black; font-size: 10px; padding-top: 12px;"><?php echo $v['content']?></div>
+                    <div style="color: black; font-size: 10px; padding-top: 12px;"><?php echo $vv['content']?></div>
                 </a>
+        <?php endif ?>
+       <?php endforeach?>
+                <div class="clearfix"></div>
+     <?php endif?>
 <?php endforeach; ?>
                 <div class="clearfix"></div>
         </div>

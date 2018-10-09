@@ -8,7 +8,6 @@ class Home extends base_Controller
         parent::__construct();
         $this->load->model('topic_m');
         $this->load->model('post_m');
-        
     }
 
     /* 首页

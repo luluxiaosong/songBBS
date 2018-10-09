@@ -7,6 +7,7 @@ class Topic_m extends CI_Model
     {
         $this->db->select('t.topic_id, t.topic_name, t.ico, count(p.post_id) posts_count')
             ->from('topics t')
+            ->where('t.topic_pid !=',0)
             ->join('posts p', 'p.topic_id = t.topic_id', 'left')
             ->group_by('t.topic_id, t.topic_name, t.ico, p.topic_id')
             ->order_by('posts_count','desc')
@@ -15,16 +16,26 @@ class Topic_m extends CI_Model
         $res = $res->result_array();
         return $res;
     }
+    //一级话题，用于添加话题时作为父PID
+    public function get_topics()
+    {
+        $this->db->select('topic_id, topic_name')
+            ->from('topics')
+            ->where('topic_pid',0);
+        $res = $this->db->get();
+        $res = $res->result_array();
+        return $res;
+    }
 
     //全部话题列表 +帖子数
     public function get_topics_all()
     {
         $this->db->cache_on();
-        $this->db->select('t.topic_id, t.topic_name, t.content,t.ico, count(p.post_id) posts_count')
+        $this->db->select('t.topic_id, t.topic_name,t.topic_pid, t.content,t.ico, count(p.post_id) posts_count')
             ->from('topics t')
             ->join('posts p','p.topic_id = t.topic_id','left')
-            ->group_by('t.topic_id, t.topic_name, t.ico,t.content,p.topic_id')
-            ->order_by('t.topic_name','asc');
+            ->group_by('t.topic_id, t.topic_name, t.ico,t.content,t.topic_pid,p.topic_id')
+            ->order_by('posts_count','asc');
         $res=$this->db->get();
         $this->db->cache_off();
         $res = $res->result_array();
@@ -34,11 +45,11 @@ class Topic_m extends CI_Model
     //全部话题列表 按帖子数排序
     public function topics_all()
     {
-       $this->db->select('t.topic_id, t.topic_name, count(p.post_id) as posts_count')
+       $this->db->select('t.topic_id, t.topic_name, t.topic_pid, count(p.post_id) as posts_count')
             ->from('topics t')
             ->join('posts p', 'p.topic_id = t.topic_id', 'left')
-            ->group_by('t.topic_id, t.topic_name, p.topic_id')
-            ->order_by('t.topic_name','asc');
+            ->group_by('t.topic_id, t.topic_name, topic_pid,p.topic_id')
+            ->order_by('posts_count','desc');
        $res = $this->db->get();
        $res = $res->result_array();
        return $res;

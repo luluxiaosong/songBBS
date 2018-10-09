@@ -19,6 +19,18 @@
             <form class="form-horizontal" enctype="multipart/form-data" action="<?php echo site_url('admin/topic/topic_add')?>" method="post">
 
                 <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">父类</label>
+                    <div class="col-sm-2">
+                        <select name="topic_pid" class="form-control">
+                            <option value="0">顶级分类</option>
+                            <?php foreach ($topics as $v):?>
+                            <option value="<?php echo $v['topic_id']?>"><?php echo $v['topic_name'] ?></option>
+                            <?php endforeach?>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">名称</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control" name="topic_name" value="<?php echo @$topic['topic_name']?>">

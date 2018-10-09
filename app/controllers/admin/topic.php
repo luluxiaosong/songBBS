@@ -68,7 +68,8 @@ class Topic extends Admin_Controller
     public function topic_add()
     {
         if(!$_POST){
-            $this->load->view('admin/topic_add');
+            $data['topics'] = $this->topic_m->get_topics();
+            $this->load->view('admin/topic_add',$data);
             return;
         }
         //上传类参数
@@ -104,9 +105,11 @@ class Topic extends Admin_Controller
                 'ico' => '/uploads/ico/' . '_a' . $config['file_name']
             );
         }else { //没有ico
-            $data = array(
+            $data = [
                 'topic_name' => $this->input->post('topic_name'),
-                'content' => $this->input->post('content'));
+                'content' => $this->input->post('content'),
+                'topic_pid'=>$this->input->post('topic_pid'),
+                ];
         }
             if ($this->db->insert('topics', $data)) {
                 echo "<script>alert('添加成功');history.back();</script>";
