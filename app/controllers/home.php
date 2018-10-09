@@ -16,13 +16,14 @@ class Home extends base_Controller
     public function index()
     {
        //redis缓存 如果key存在直接输出 不存在在最后写入
-//        $this->load->library('RedisClass');
-       // $this->redismy->key = md5($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-       // if($this->redismy->exists()){
-       //      $data = $this->redismy->get();
-       //      $this->load->view('home/home.php', $data);
-       //      return;
-       // }
+        $this->load->library('RedisClass');
+        //设置key
+        $this->redisclass->key = md5($_SERVER['REQUEST_URI']);
+        if($this->redisclass->exists()){
+             $data = $this->redisclass->get();
+             $this->load->view('home/home.php', $data);
+             return;
+        }
 
         //导航选项
         $data['nav_active'] = 'home';
@@ -53,9 +54,11 @@ class Home extends base_Controller
         $data['topics_all'] = $this->topic_m->topics_all();
         $this->db->cache_off(); 
      
-        //写入redis
-        // $this->redismy->value = $data;
-        // $this->redismy->set();
+         //写入redis
+         $this->redisclass->value = $data;
+         //设置过期时间 s
+         $this->redisclass->expire = 2;
+         $this->redisclass->setex();
 
         $this->load->view('home/home.php', $data);
     }

@@ -13,9 +13,25 @@ class Topic extends base_Controller
     //全部话题列表
     public function topic_list()
     {
+        //redis缓存 如果key存在直接输出 不存在在最后写入
+        $this->load->library('RedisClass');
+        //设置key
+        $this->redisclass->key = md5($_SERVER['REQUEST_URI']);
+        if($this->redisclass->exists()){
+            $data = $this->redisclass->get();
+            $this->load->view('home/topic_list', $data);
+            return;
+        }
         //顶部导航
         $data['nav_active'] = 'topic';
         $data['topics'] = $this->topic_m->get_topics_all();
+
+        //写入redis
+        $this->redisclass->value = $data;
+        //设置过期时间 s
+        $this->redisclass->expire = 2;
+        $this->redisclass->setex();
+
         $this->load->view('home/topic_list',$data);
     }
 

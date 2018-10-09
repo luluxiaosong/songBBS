@@ -31,7 +31,7 @@ class RedisClass{
             if($this->redis = new redis()){
                 //ping连接
                 if(!$this->ping()){
-                	exit('redis没有开启');
+                	exit('redis出错');
                     $this->redis = false;
                 }else{
                         //连接通后的数据库选择和密码验证操作
