@@ -1,6 +1,5 @@
 <?php
 /**
-*  redisdrive.class.php
 *  php redis 操作类
 **/
 class RedisClass{
@@ -8,8 +7,8 @@ class RedisClass{
     public $key ;
     //值
     public $value;
-    //默认生存时间
-    public $expire = 10; /*60*60*24*/
+    //默认生存时间 s
+    public $expire = 100; /*60*60*24*/
     //连接是否成功
     public $redis;
     //连接redis服务器ip
@@ -31,10 +30,10 @@ class RedisClass{
             if($this->redis = new redis()){
                 //ping连接
                 if(!$this->ping()){
-                	exit('redis出错');
+                	exit('redis连接失败');
                     $this->redis = false;
                 }else{
-                        //连接通后的数据库选择和密码验证操作
+                    //连接通后的数据库选择和密码验证操作
                     $this->redis -> select($this->dbindex);
                     $this->redis->auth($this->password);
                 }
