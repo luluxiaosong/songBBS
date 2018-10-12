@@ -370,26 +370,5 @@ $config['proxy_ips'] = '';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
 
-/*我的设置*/
-//安全秘钥
-$config['encryption_key']='0558ff564237abb96922b31e624c2f30';
-//审核 off为关闭，on为开启
-$config['is_approve']='off';
-//网站运行状态
-$config['site_close'] = 'on';
-//网站暂时关闭公告
-$config['site_close_msg'] = '网站升级,暂时关闭';
 
-//每页显示帖子条数
- $config['page_nums'] =5;
-//每页显示回复条数
- $config['page_comments'] = 10;
-//
-// $config[''] =
-//
-// $config[''] =
-//
-// $config[''] =
-// $config[''] =
-//
-// $config[''] =
+

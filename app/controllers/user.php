@@ -24,7 +24,7 @@ class user extends base_Controller
             }
         }
     }
-    //ajax 检测邮箱 可用返回yes
+    //ajax 检测邮箱 可用返回yes 否则返回'no'
     public function check_email()
     {
         $email = $this->input->get('email');
@@ -36,8 +36,8 @@ class user extends base_Controller
         }
     }
 
-    /*注册新用户 ajax
-     *前端做了所有检测 后端只需保证安全 无需返回提示信息 检测不通过直接exit
+    /**
+     * 注册新用户 ajax
      */
     public function register()
     {
@@ -52,19 +52,20 @@ class user extends base_Controller
         $vcode = $this->input->post('vcode');
         //验证码检测
         if (strtolower($_SESSION['vcode']) !== strtolower(trim($vcode))){
-            exit;
+            exit('<script>alert("验证码错误");history.back();</script>');
         }
         //电子邮件检测
         if ($this->user_m->check_email($email) == false) {
-            exit;
+            exit('<script>alert("邮箱不可用");history.back();</script>');
         }
-        //用户名检测  1.格式 2.是否占用
+        //用户名格式检测
         $username_re = "/^[\x{4e00}-\x{9fa5}a-zA-Z]+$/u";
         if(!preg_match($username_re,trim($username),$res)){
-            exit;
+            exit('<script>alert("非法用户名");history.back();</script>');
         }
+        //检测是否占用
         if ($this->user_m->check_username($username) == false) {
-            exit;
+            exit('<script>alert("用户名被占用");history.back();</script>');
         }
         //检测通过 入库 密码MD5加密
         $data = [
