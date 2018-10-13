@@ -10,7 +10,7 @@
                     <div class="personal_nav">
                         <a id="post" class="personal_active" href="<?php echo site_url('personal/home') ?>">我的帖子</a>
                         <a id="comment_for_me"  href="<?php echo site_url('personal/comment_for_me') ?>">@我</a>
-                        <a id="collection" href="<?php echo site_url('personal/collection ') ?>">收藏</a>
+                        <a id="collection" href="<?php echo site_url('personal/collection') ?>">收藏</a>
                         <a id="follow"  href="<?php echo site_url('personal/follow') ?>">关注 </a>
                         <a id="message"  href="<?php echo site_url('personal/message') ?>"><span class="glyphicon glyphicon-envelope"></span> 私信</a>
                     </div>

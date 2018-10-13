@@ -10,7 +10,7 @@
                 <div class="personal_nav">
                     <a id="post" href="<?php echo site_url('personal/home') ?>">我的帖子</a>
                     <a id="comment_for_me"  href="<?php echo site_url('personal/comment_for_me') ?>">@我</a>
-                    <a id="collection" href="<?php echo site_url('personal/collection ') ?>">收藏</a>
+                    <a id="collection" href="<?php echo site_url('personal/collection') ?>">收藏</a>
                     <a id="follow"  href="<?php echo site_url('personal/follow') ?>">关注 </a>
                     <a id="message" class="personal_active" href="<?php echo site_url('personal/message') ?>"><span class="glyphicon glyphicon-envelope"></span> 私信</a>
 
@@ -22,7 +22,7 @@
                             <?php if($v['sender_uid'] !== $_SESSION['uid']):?>
                             <span class="view_state" style="padding: 2px;"><?php if($v['is_reading'] == 0) echo '未读'; else echo '已读' ;?></span>
                             <?php endif?>
-                            &nbsp;&nbsp;&nbsp;<span style="color: #999"><?php echo date('Y-m-d H:i:s',$v['create_time'])?></span>&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<span style="color: #999"><?php echo date('Y-m-d H:i:s',$v['create_time'])?></span>&nbsp;&nbsp;&nbsp;来自&nbsp;
                             <a href="<?php echo site_url('user/user_home/'.$v['sender_uid'])?>" target="_blank"><img style="height: 20px; margin-right:;float:  ; border-radius:50%;" src="<?php echo base_url($v['avatar']); ?>"/> <span style="font-size: 16px;"><?php echo $v['username']?></span></a>
                             &nbsp;&nbsp;&nbsp;
                             <a class="message_view" href="javascript:void(0)" style="color: #1c90f5; font-size: 14px;">查看</a>

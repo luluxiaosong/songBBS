@@ -186,23 +186,52 @@ class personal extends personal_Controller
     //修改头像
     public function avatar_set()
     {   
-        $config['upload_path'] = MYWEB.'/uploads/avatar/';
+        $uid = $_SESSION['uid'];
+        $config['upload_path'] = WEBROOT.'/uploads/avatar/';
         $config['allowed_types'] = 'jpg|png';
-        $config['max_size'] = '4194304';
-        $config['max_width'] = '10240000';
-        $config['max_height'] = '7680000';
-        //获取图片后缀名
+        $config['max_size'] = '1024*600'; //600k限制
+        $config['max_width'] = '1000';
+        $config['max_height'] = '10000';
+        //上传文件名随机生成
+        $config['encrypt_name'] = true;
         $this->load->library('upload', $config);
         //上传成功
         if ($this->upload->do_upload()) {
-          $file_info =  $this->upload->data();
-          $file_name = $file_info['file_name'];
-            $this->db->where('uid',$_SESSION['uid'])->update('users',array('avatar'=>'/uploads/avatar/'.$file_name));
-            $_SESSION['avatar'] = '/uploads/avatar/'.$file_name;
-           echo "<script>alert('头像修改成功');history.back();</script>;";
-        } else {
-           echo "<script>alert('头像修改失败');history.back();</script>;";
-        }
+            //返回上传信息
+            $file_upload_info =  $this->upload->data();
+            //返回文件全路径
+            $file_path_upload = WEBROOT.'/uploads/avatar/'.$file_upload_info['file_name'];
+
+            //压缩头像为 150X140
+            $config_2['image_library'] = 'gd2';
+            $config_2['source_image'] = $file_path_upload;//读取上传的文件
+            $config_2['create_thumb'] = TRUE;
+            $config_2['maintain_ratio'] = TRUE;
+            $config_2['width'] = 150;
+            $config_2['height'] = 140;
+            $this->load->library('image_lib', $config_2);
+            if($this->image_lib->resize()){ //压缩成功 默认文件名添加_thump 这里须手动修改
+                //后缀
+                $ext = strrchr($file_upload_info['file_name'],'.');
+                //文件名无后缀
+                $file_basename = basename($file_upload_info['file_name'],$ext);
+                //生成最终文件名
+                $file_name = $file_basename.'_thumb'.$ext;
+                //修改数据库用户头像路径
+                $this->db->where('uid',$uid)->update('users',array('avatar'=>'/uploads/avatar/'.$file_name));
+                //删除原文件
+                unlink($file_path_upload);
+                //删除原头像
+                unlink(WEBROOT.$_SESSION['avatar']);
+                //修改当前用户头像url
+                $_SESSION['avatar'] = '/uploads/avatar/'.$file_name;
+                echo "<script>alert('头像修改成功');history.back();</script>";
+            }
+        }else {
+                //上传失败返回错误信息
+                $error = $this->upload->display_errors('\n','');
+                echo "<script>alert('头像修改失败: $error');history.back();</script>";
+            }
     }
 
         //@我的评论 暂时不写
@@ -223,7 +252,6 @@ class personal extends personal_Controller
         if (empty($_SESSION['uid'])) {
             redirect('user/login_html');
         }
-        // $data['user_data']=
         $data['action'] = $action;
         $data['user'] = $this->user_m->get_user_by_uid($_SESSION['uid']);
         $this->load->view('home/set_user_info', $data);

@@ -38,17 +38,6 @@ class Topic extends base_Controller
     //按话题 展示示帖子
     public function topic_show()
     {
-       //redis缓存 如果key存在直接输出 不存在在最后写入
-       // $this->load->library('RedisMy');
-       // $this->redismy->key = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-       // if($this->redismy->exists()){
-       //      $data = $this->redismy->get();
-       //      // p($data);
-
-       //      $this->load->view('home/topic_show', $data);
-       //      return;
-       // }
-
         $topic_id = $this->uri->segment(3);
         $data['topic_id'] = $topic_id;
         //当前话题数据

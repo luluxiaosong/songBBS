@@ -7,69 +7,9 @@
 </head>
 <body>
 <?php $this->load->view('home/common/nav')?>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-7">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="panel-title">注册用户</div>
-                    </div>
-                    <div class="panel-body">
-                    <form accept-charset="UTF-8" class="form-horizontal">
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="username">用户名</label>
-						<div class="col-sm-6">
-						<input class="form-control" id="username" type="text" placeholder="英文、中文，2~8位" />
-                        <span  class="username_tips"></span>
-						</div>
-					</div>
-					<div class="form-group">     
-						<label class="col-sm-2 control-label" for="email">电子邮件</label>
-						<div class="col-sm-7">
-						<input class="form-control" id="email" name="email" size="50" type="email" value="" />
-						<span class="email_tips"></span>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="password">密码</label>
-						<div class="col-sm-7">
-						<input class="form-control" id="password" name="password" type="password" value="" />
-						<span class="password_tips"></span>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="user_password_confirmation">密码确认</label>
-						<div class="col-sm-7">
-						<input class="form-control" id="password_confirm" name="password_confirm" type="password" />
-                        <span class="password_confirm_tips"></span>
-						</div>
-					</div>
-					<div class="form-group">
-					  <label class="col-sm-2 control-label" for="vcode">验证码</label>
-						<div class="col-sm-4">
-						<input class="form-control" id="vcode" name="vcode" type="text" />
-						<span class="vcode_tips"></span>
-						</div>
-						<div class="col-md-4">
-						<a href="javascript:reloadVcode();" title="点击更换"><img src="<?php echo site_url('vcode_c/get')?>" id="vcodeImg" border="0" />&nbsp;&nbsp;换一张</a>
-						</div>
-					</div>
-                    <div class='form-group'>
-						<div class="col-sm-offset-2 col-sm-4">
-							<button type="button" class="btn btn-primary register_post">注册</button>&nbsp;&nbsp;&nbsp;<span class="post_tips error"></span>
-						</div>
-					</div>
-					</form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 <style>
-    .error{
-        color: red;
-    }
+
 </style>
 <script >
     //刷新验证图片

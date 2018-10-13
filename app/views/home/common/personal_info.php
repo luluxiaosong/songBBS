@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-md-2">
-                        <img style="height: 80px;" class="img-rounded img-responsive"
+                        <img style="height: 80px; width: 75px" class="img-rounded img-responsive"
                              src="<?php echo base_url($user['avatar']); ?>" alt="admin large avatar">
                     </div>
                     <div class="col-md-6">

@@ -38,6 +38,12 @@ body {
 .reply-body {
     padding-left: 20px;
 }
+.error{
+    color: red;
+}
+.ok{
+    color: #4cae4c;
+}
 
 .red {
     color: #FF0000;
@@ -236,7 +242,8 @@ nodes_left {
     border-radius: 4px;
 }
 .topic_hot_box:hover,.topic_hot_select{
-    background-color: #eee;
+    /*background-color: #eee;*/
+    border:1px solid #009688;
 }
 
 .topic_hot_box span{
@@ -332,5 +339,5 @@ nodes_left {
 }
 .topic_span a:hover, .topic_span:hover{
     color: white;
-    background-color: #00a0e9;
+    background-color: #03a9f4b8;
 }

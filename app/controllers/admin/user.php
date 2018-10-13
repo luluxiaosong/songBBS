@@ -20,9 +20,10 @@ class User extends Admin_Controller
     public function user_find()
     {
         $data['active'] = '用户管理';
-        $username = $this->input->get('username');
+        $username = $this->input->post('username');
         $data['user_list'][0] = $this->user_m->user_by_username($username);
-        $this->load->view('admin/user', $data);
+        p($data);
+        $this->load->view('admin/user_list', $data);
     }
 
     /*删除用户*/

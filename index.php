@@ -19,7 +19,7 @@
  *
  */
 //网站根目录
- define('MYWEB',__DIR__);
+ define('WEBROOT',__DIR__);
 //根目录名
 // define('WEB',dirname(__DIR__));
 

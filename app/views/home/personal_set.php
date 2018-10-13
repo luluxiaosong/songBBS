@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-2 col-md-8">
-            	<div><a href="<?php echo site_url('personal/home')?>" >个人主页</a> > 修改个人资料</div>
+            	<div style="margin-bottom: 12px;"><a href="<?php echo site_url('personal/home')?>" >个人主页</a> > 修改个人资料</div>
                 <div class="panel">
                     <div class="panel-body">
                         <div class="setting">
@@ -43,26 +43,24 @@
             <hr class="" />
 			<div class="">
              <form class="form-horizontal" enctype="multipart/form-data" action="<?php echo site_url('personal/avatar_set')?>" method="post">
-			<input type="hidden" name="uid" value="<?php echo $user['uid']?>">
-	  			<fieldset>
-	    			<div class="form-group">
+			<input type="hidden" name="uid" value="<?php echo $_SESSION['uid']?>">
+	    			<div class="form-group" style="margin-bottom: 18px;">
 	      				<label class="col-md-2 control-label">当前头像</label>
 	      				<div class="col-md-8">
-	                            <img class="middle_avatar" src="<?php echo base_url($user['avatar'])?>"   style="height: 50px; width: 50px">
+	                            <img class="middle_avatar" src="<?php echo base_url($_SESSION['avatar'])?>"  style="height: 80px; width: 75px">
 	      				</div>
 	    			</div>
 	    			<div class="form-group">
-	      				<div class="col-md-2"></div>
+	      				<label class="col-md-2 control-label">选择新头像</label>
 	      				<div class="col-md-6">
-	       					<input type="file" id="avatar_file" name="userfile" />
+	       					<input type="file" id="avatar_file" name="userfile" >
 	      				</div>
 	    			</div>
 	    			<div class="form-group">
 		    			<div class="col-sm-offset-2 col-sm-6">
-	    				<button type="sumbmit" id="upload_img" name="upload" class="btn btn-primary">修改头像</button>
+	    				<button type="sumbmit" id="upload_img" name="upload" class="btn btn-primary">确认修改</button>
 	    				</div>
 	    			</div>
-	    		</fieldset>
                     </form>
             </div>
         <hr/>

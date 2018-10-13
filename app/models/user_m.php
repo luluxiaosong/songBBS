@@ -111,10 +111,10 @@ class user_m extends CI_Model
     public function user_by_username($username)
     {
         //sql过滤
-        $username = mysql_real_escape_string($username);
-        $this->db->select('users.*,user_groups.group_name');
+        // $username = mysql_real_escape_string($username);
+        p($username);
+        $this->db->select('uid,username,user_type');
         $this->db->from('users');
-        $this->db->join('user_groups', 'users.gid = user_groups.gid', 'left');
         $this->db->where(array('username' => $username));
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
