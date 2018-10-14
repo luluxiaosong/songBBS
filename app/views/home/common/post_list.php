@@ -1,7 +1,13 @@
 <?php if (!empty($posts)) foreach ($posts as $v): ?>
     <li class="posts_list">
         <div style="margin-bottom: 8px;">
-            <a href="<?php echo site_url('user/user_home/' . $v['uid']) ?>" target="_blank" style="float: left; margin-right: 16px; margin-left: 16px; text-align: center;">
+            <a href="<?php
+                            if(isset($_SESSION['uid']) && $v['uid'] != $_SESSION['uid']) {
+                                echo site_url('user/user_home/' . $v['uid']);
+                                }else{
+                                echo site_url('personal/home');
+                                }
+                                ?>" target="_blank" style="float: left; margin-right: 16px; margin-left: 16px; text-align: center;">
                 <img alt="<?php echo $v['username'] ?>"src="<?php echo base_url($v['avatar']) ?>" style="border-radius:50%; height:46px; margin-bottom:5px; width:46px; "/> 
                 <div class="text-muted"><?php echo $v['username']?></div>
             </a>

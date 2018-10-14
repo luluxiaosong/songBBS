@@ -1,61 +1,60 @@
-
 <!--  弹出层 注册Modal -->
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="registerModal">注册</h4>
             </div>
-                <div style="margin-bottom: 10px;margin-top: 10px">
-                    <form accept-charset="UTF-8" class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="username">用户名</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" id="register_username" type="text" placeholder="英文、中文，2~8位" name="register_username"/>
-                                                <span  class="username_tips"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="register_email">电子邮件</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" id="register_email" name="register_email" size="50" type="email" value="" />
-                                                <span class="email_tips"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="register_password">密码</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" id="register_password" name="register_password" type="password" value="" />
-                                                <span class="password_tips"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="user_password_confirmation">密码确认</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" id="register_password_confirm" name="register_password_confirm" type="password" />
-                                                <span class="password_confirm_tips"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="vcode">验证码</label>
-                                            <div class="col-sm-4">
-                                                <input class="form-control" id="register_vcode" name="register_vcode" type="text" />
-                                                <span class="vcode_tips"></span>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <a href="javascript:register_reloadVcode();" title="点击更换"><img src="<?php echo site_url('vcode_c/get')?>" id="vcodeImg" border="0" />&nbsp;&nbsp;换一张</a>
-                                            </div>
-                                        </div>
-                                        <div class='form-group'>
-                                            <div class="col-sm-offset-2 col-sm-2">
-                                                <button type="button" class="btn btn-primary register_post">确认注册</button>
-                                            </div>
-                                            <div class="col-sm-6 post_tips">
-                                            </div>
-                                        </div>
-                                    </form>
-                </div>
+            <div style="margin-bottom: 10px;margin-top: 10px">
+                <form accept-charset="UTF-8" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="username">用户名</label>
+                        <div class="col-sm-7">
+                            <input class="form-control" id="register_username" type="text" placeholder="英文、中文，2~8位" name="register_username"/>
+                            <span  class="username_tips"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="register_email">电子邮件</label>
+                        <div class="col-sm-7">
+                            <input class="form-control" id="register_email" name="register_email" size="50" type="email" value="" />
+                            <span class="email_tips"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="register_password">密码</label>
+                        <div class="col-sm-7">
+                            <input class="form-control" id="register_password" name="register_password" type="password" value="" />
+                            <span class="password_tips"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="user_password_confirmation">密码确认</label>
+                        <div class="col-sm-7">
+                            <input class="form-control" id="register_password_confirm" name="register_password_confirm" type="password" />
+                            <span class="password_confirm_tips"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="vcode">验证码</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="register_vcode" name="register_vcode" type="text" />
+                            <span class="vcode_tips"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="javascript:register_reloadVcode();" title="点击更换"><img src="<?php echo site_url('vcode_c/get')?>" id="vcodeImg" border="0" />&nbsp;&nbsp;换一张</a>
+                        </div>
+                    </div>
+                    <div class='form-group'>
+                        <div class="col-sm-offset-2 col-sm-2">
+                            <button type="button" class="btn btn-primary register_post">确认注册</button>
+                        </div>
+                        <div class="col-sm-6 post_tips">
+                        </div>
+                    </div>
+                </form>
+            </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -66,7 +65,7 @@
 <!--end 注册 -->
 
 <!--  弹出层 登陆 -->
-    <div class="modal fade" id="loginModal" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="loginModal" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
      <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -113,7 +112,6 @@
         </div>
      </div>
     </div>
-
 <!--end 登陆-->
 
 <!--顶层导航-->

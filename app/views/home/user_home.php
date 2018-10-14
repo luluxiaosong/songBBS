@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-6" style="">
                         <p style="padding-top: 5px;"><span style="font-size: 20px;"><?php echo $user['username']; ?></span></p>
-                        <p style="padding-top: 6px;"><span class="small">哦哦哦</span><?php echo $user['introduction'] ?><a href=""></a></p>
+                        <p style="padding-top: 6px;"><span class="text-muted"><?php echo $user['introduction'] ?><a href=""></a></span></p>
                         <?php if(!empty($_SESSION['uid'])):?>
                         <p style="padding-top: 6px;"><?php if($is_follow == 1) :?><a href="<?php echo site_url('personal/follow_del/'.$user['uid'])?>">取关</a>&nbsp;&nbsp;&nbsp;<a class="messagebox_btn" href="javascript:">私信TA</a>
                             <?php else: ?><a  href="<?php echo site_url('user/follow_add/'.$user['uid']) ?>">关注TA</a><?php endif ?>

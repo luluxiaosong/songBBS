@@ -44,7 +44,7 @@
                         <!-- 分页  -->
                         <li style="height: 35px; padding-left: 40px;">
                             <p class="home_page">
-                                <?php// echo $page_out; ?>
+                                <?php echo $page_out; ?>
                             </p>
                         </li>
 

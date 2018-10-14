@@ -102,24 +102,33 @@ class personal extends personal_Controller
         $data['follows_my'] = $this->follow_m->follows_my($uid);
         $this->load->view('home/personal_follow', $data);
     }
-    //消息列表
+    //私信列表
     public function message()
     {
         $uid = $_SESSION['uid'];
         //我的个人资料
         $data['user'] = $this->user_m->get_user_by_uid($uid);
         $this->load->model('message_m');
-        $data['messages'] = $this->message_m->myMessage($uid);
+        $message_rows  = $this->db->select('id')->get_where('messages',['receiver_uid'=>$uid])->num_rows();
+        //分页
+        $this->load->library('pagination');
+        $config['base_url'] = site_url('personal/message/');
+        $config['total_rows'] = $message_rows;
+        $config['per_page'] = 1;
+        $this->pagination->initialize($config);
+        $data['page_out'] = $this->pagination->create_links();
+        $now_page = $this->uri->segment(3) ? $this->uri->segment(3):0; //0页开始
+        $data['messages'] = $this->message_m->myMessage($uid,$config['per_page'],$now_page*$config['per_page']);
+
         $this->load->view('home/personal_message', $data);
     }
 
     //AJAX 查看私信 修该阅读状态is_reading为0
     public function message_state()
     {
-        $message_id = $_POST['message_id'];
+        $message_id = $this->input->post['message_id'];
         $uid = $_SESSION['uid'];
-        $this->db->where(array('id'=>$message_id,
-                                'receiver_uid'=>$uid));
+        $this->db->where(array('id'=>$message_id,'receiver_uid'=>$uid));
         if($this->db->update('messages',array('is_reading'=>1))){
             echo 'success';
         }

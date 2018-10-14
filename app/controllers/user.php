@@ -103,7 +103,7 @@ class user extends base_Controller
         $data['password'] = md5(strtolower($_POST['password']));
         //登陆成功
         if ($this->user_m->login($data)) {
-            redirect('home');
+            echo "<script>history.go(-1);</script>";
         } else {
             echo "<script>alert('用户名或密码不正确，请重新输入'); history.go(-1); reload_vcode(); </script>";
         }
